@@ -91,7 +91,7 @@ public class GitChangeSetBadArgsTest {
         String authorName = "Author Test 5";
         String emptyAuthorEmail = "";
         GitChangeSet changeSet = createAuthorChangeSet(authorName, emptyAuthorEmail);
-        assertEquals(User.getUnknown(), changeSet.findOrCreateUser(authorName, emptyAuthorEmail, false, false));
+        assertEquals(authorName, changeSet.findOrCreateUser(authorName, emptyAuthorEmail, false, false).getFullName());
         assertEquals(User.getUnknown(), changeSet.findOrCreateUser(authorName, emptyAuthorEmail, true, false));
     }
 
@@ -100,7 +100,7 @@ public class GitChangeSetBadArgsTest {
         String authorName = "Author Test 6";
         String emptyAuthorEmail = "";
         GitChangeSet changeSet = createAuthorChangeSet(authorName, emptyAuthorEmail);
-        assertEquals(User.getUnknown(), changeSet.findOrCreateUser(authorName, null, false, false));
+        assertEquals(authorName, changeSet.findOrCreateUser(authorName, emptyAuthorEmail, false, false).getFullName());
         assertEquals(User.getUnknown(), changeSet.findOrCreateUser(authorName, null, true, false));
     }
 
@@ -109,7 +109,7 @@ public class GitChangeSetBadArgsTest {
         String committerName = "Committer Test 7";
         String emptyCommitterEmail = "";
         GitChangeSet changeSet = createCommitterChangeSet(committerName, emptyCommitterEmail);
-        assertEquals(User.getUnknown(), changeSet.findOrCreateUser(committerName, emptyCommitterEmail, false, false));
+        assertEquals(committerName, changeSet.findOrCreateUser(committerName, emptyCommitterEmail, false, false).getFullName());
         assertEquals(User.getUnknown(), changeSet.findOrCreateUser(committerName, emptyCommitterEmail, true, false));
     }
 
@@ -118,7 +118,7 @@ public class GitChangeSetBadArgsTest {
         String committerName = "Committer Test 8";
         String emptyCommitterEmail = "";
         GitChangeSet changeSet = createCommitterChangeSet(committerName, emptyCommitterEmail);
-        assertEquals(User.getUnknown(), changeSet.findOrCreateUser(committerName, null, false, false));
+        assertEquals(committerName, changeSet.findOrCreateUser(committerName, emptyCommitterEmail, false, false).getFullName());
         assertEquals(User.getUnknown(), changeSet.findOrCreateUser(committerName, null, true, false));
     }
 }

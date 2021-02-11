@@ -95,6 +95,8 @@ public class GitChangeSetTruncateTest {
         this.commitSummary = commitSummary;
         this.truncatedSummary = truncatedSummary;
         GitClient gitClient = Git.with(TaskListener.NULL, new EnvVars()).in(repoRoot).using(gitImpl).getClient();
+        gitClient.setAuthor("root", "root@mydomain.com");
+        gitClient.setCommitter("root", "root@mydomain.com");
         final ObjectId head = commitOneFile(gitClient, commitSummary);
         StringWriter changelogStringWriter = new StringWriter();
         gitClient.changelog().includes(head).to(changelogStringWriter).execute();

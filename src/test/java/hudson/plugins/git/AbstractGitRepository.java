@@ -43,6 +43,8 @@ public abstract class AbstractGitRepository {
         repo.init();
         testGitDir = repo.getRoot();
         testGitClient = Git.with(listener, new EnvVars()).in(testGitDir).getClient();
+        testGitClient.setAuthor("root", "root@mydomain.com");
+        testGitClient.setCommitter("root", "root@mydomain.com");
     }
 
     /**

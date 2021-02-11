@@ -66,8 +66,8 @@ public final class GitSampleRepoRule extends AbstractSampleDVCSRepoRule {
         git("init");
         write("file", "");
         git("add", "file");
-        git("config", "user.name", "Git SampleRepoRule");
-        git("config", "user.email", "gits@mplereporule");
+        git("config", "--global", "user.name", "Git SampleRepoRule");
+        git("config", "--global", "user.email", "gits@mplereporule");
         git("commit", "--message=init");
     }
 

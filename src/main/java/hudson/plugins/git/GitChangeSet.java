@@ -448,16 +448,18 @@ public class GitChangeSet extends ChangeLogSet.Entry {
 
             if (user == null) {
                 if (csAuthorEmail == null || csAuthorEmail.isEmpty()) {
-                    return User.getUnknown();
-                }
-                // Ensure that malformed email addresses (in this case, just '@')
-                // don't mess us up.
-                String[] emailParts = csAuthorEmail.split("@");
-                if (emailParts.length > 0) {
-                    user = User.get(emailParts[0], true, Collections.emptyMap());
+                  user = User.get(csAuthor, true, Collections.emptyMap());
                 } else {
+                  // Ensure that malformed email addresses (in this case, just '@')
+                  // don't mess us up.
+                  String[] emailParts = csAuthorEmail.split("@");
+                  if (emailParts.length > 0) {
+                    user = User.get(emailParts[0], true, Collections.emptyMap());
+                  } else {
                     return User.getUnknown();
-                }
+                  }
+              // THIS WAS OUR ORIGINAL PATCH, completely replaced lines 450-460
+              // user = User.get(csAuthor, true, Collections.emptyMap());
             }
         }
         // set email address for user if none is already available
